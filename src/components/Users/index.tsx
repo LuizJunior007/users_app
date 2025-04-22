@@ -1,8 +1,8 @@
 import { Row, Col, Button } from "react-bootstrap";
-import { User } from "../../pages/Home";
+import { UserProps } from "../../pages/Home";
 
 type UsersProps = {
-    users: User[];
+    users: UserProps[];
     deleteUser: (id:string) => void;
     getUserById: (id:string) => void;
 }

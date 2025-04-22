@@ -4,6 +4,7 @@ import Users from "../../components/Users";
 import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 import { useForm } from "react-hook-form";
+import MyToast from "../../components/Toast";
 
 export type UserProps = {
     id: string;
@@ -21,6 +22,7 @@ const Home = () => {
     const { register, handleSubmit, watch, reset, setFocus, formState: { errors } } = useForm();
     const [ users, setUsers ] = useState<UserProps[]>([]);
     const navigate = useNavigate();
+    const [ show, setShow ] = useState(false);
 
     const addUser = async () => {
     
@@ -57,6 +59,7 @@ const Home = () => {
         setFocus('name');
         reset();
         setUsers(prev => [ data, ...prev ]);
+        setShow(true);
         
     }
 
@@ -102,6 +105,11 @@ const Home = () => {
         }
     }
 
+    const handleSetShow = () => {
+
+        setShow(false);
+    }
+
     useEffect(() => {
 
         getUsers();
@@ -115,6 +123,12 @@ const Home = () => {
                 register={ register } 
                 addUser={ handleSubmit(addUser) } 
                 errors={ errors }  
+            />
+
+            <MyToast 
+                setShow={ handleSetShow } 
+                show={ show } 
+                callback={{ status: 'success', msg: 'Adicionado com sucesso' }} 
             />
         </>
     );

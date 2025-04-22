@@ -1,6 +1,5 @@
 import { Button, Col, FloatingLabel, FormControl, Row } from "react-bootstrap";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { UserProps } from "../../pages/Home";
 
 type FormProps = {
 
